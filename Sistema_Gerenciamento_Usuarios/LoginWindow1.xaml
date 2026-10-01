@@ -1,0 +1,20 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" x:Class="WpfApp1.LoginWindow1"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="LoginWindow1" Height="450" Width="800">
+    <Grid x:Name="cor_fundo" Background="#FF2D2D30">
+        <TextBlock HorizontalAlignment="Left" Height="52" Margin="302,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="148" FontFamily="Times New Roman" Foreground="White"><Run Language="pt-br" Text="&#x9;"/><LineBreak/><Run Language="pt-br" Text="&#x9;"/><Run Text="USUÁRIO"/><LineBreak/><Run/></TextBlock>
+        <TextBlock Height="147" Margin="217,-24,261,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="36" FontWeight="Bold" FontFamily="Tw Cen MT" TextAlignment="Center" FontStyle="Italic" Foreground="White"><Run Language="pt-br"/><LineBreak/><Run Language="pt-br" Text="TELA DE LOGIN"/><LineBreak/><Run/></TextBlock>
+        <ui:PasswordBox x:Name="digita_senha" HorizontalAlignment="Left" Height="43" Margin="330,217,0,0" Width="177" VerticalAlignment="Top"/>
+        <Button x:Name="btn_login_cadastro" Content="ENTRAR" Margin="336,345,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.517,-0.098" Width="80" FontFamily="Times New Roman" Click="btn_login_cadastro_Click" Background="#FF67FF01"/>
+        <TextBlock HorizontalAlignment="Left" Height="34" Margin="304,181,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="148" FontFamily="Times New Roman" Foreground="White"><Run Language="pt-br" Text="&#x9;"/><LineBreak/><Run Language="pt-br" Text="&#x9;"/><Run Text="SENHA"/><LineBreak/><Run/></TextBlock>
+        <TextBox x:Name="digita_usuario" HorizontalAlignment="Left" Height="37" Margin="332,139,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="92"/>
+
+    </Grid>
+</Window>
