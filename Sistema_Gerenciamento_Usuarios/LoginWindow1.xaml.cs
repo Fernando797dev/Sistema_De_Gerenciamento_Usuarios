@@ -1,5 +1,8 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using Sistema_Gerenciamento_Usuarios;
+using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -9,10 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using System;
-using MySql.Data.MySqlClient;
 using BCryptNet = BCrypt.Net.BCrypt;
-using Sistema_Gerenciamento_Usuarios;
 
 namespace WpfApp1
 {
@@ -35,7 +35,8 @@ namespace WpfApp1
             //VERIFICAR SE É ADMIN
             //====================
 
-            
+            bool inativo = false;
+
             string usuario = digita_usuario.Text.Trim();
             string senha = digita_senha.Password.Trim();
 
@@ -47,12 +48,14 @@ namespace WpfApp1
 
             try
             {
+               
+
                 using (MySqlConnection conexao = new MySqlConnection(connectionString))
                 {
 
                     conexao.Open();
 
-                    string query = "SELECT senha, IsAdmin, id FROM usuarios WHERE usuario = @usuario";
+                    string query = "SELECT senha, IsAdmin, id, status FROM usuarios WHERE usuario = @usuario";
 
                     using (MySqlCommand comando = new MySqlCommand(query, conexao))
                     {
@@ -70,21 +73,36 @@ namespace WpfApp1
                                 int idUsuarioLogado = reader.GetInt32("id");
                                 string senhaHashBanco = reader.GetString("senha");
                                 bool isAdmin = reader.GetBoolean("IsAdmin");
+                                string VerificarStatus = reader.GetString ("status");
 
                                 if (BCryptNet.Verify(senha, senhaHashBanco))
                                 {
+                                    if (VerificarStatus != "Ativo")
+                                    {
+                                        MessageBox.Show("ERRO DE SEU USUÁRIO É INATIVO");
+                                        return;
+                                    }
+                                    
                                     MessageBox.Show("Login realizado com sucesso!", "Sucesso", MessageBoxButton.OK, MessageBoxImage.Information);
 
                                     if (isAdmin)
+                                            
                                     {
-                                        MessageBox.Show("Seja bem vindo a sua tela admin");
+                                        MessageBox.Show("Seja bem vindo a sua tela admin!");
                                         Tela_Inicial_admin TelaAdmin = new Tela_Inicial_admin();
                                         TelaAdmin.Show();
                                         this.Close();
                                     }
+                                    
+                                    
+                                    else 
+                                    {
+                                        Read TelaUsuario = new Read();
+                                        TelaUsuario.Show();
+                                        this.Close();
+                                    }
 
-
-                                    this.Close(); 
+                                    this.Close();
                                 }
                                 else
                                 {
@@ -101,6 +119,7 @@ namespace WpfApp1
                         }
                     }
                 }
+
             }
             catch (Exception ex)
             {

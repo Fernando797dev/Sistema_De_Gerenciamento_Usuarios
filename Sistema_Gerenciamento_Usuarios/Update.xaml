@@ -9,17 +9,99 @@
         WindowStartupLocation="CenterScreen"
         Title="Update" Height="450" Width="800">
     <Grid Background="#FF27581A">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="207*"/>
+            <ColumnDefinition Width="193*"/>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="Avatar1" Width="60" Height="60" Margin="26,127,328,247" Padding="0" 
+            Click="Avatar1_Click">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Style.Triggers>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Opacity" Value="0.5"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+            <Image Source="/Image/avatar1Certo.webp" Stretch="Uniform"/>
+        </Button>
+        <!--AVATAR 2-->
+        <Button x:Name="Avatar2" Width="60" Height="60" Margin="26,56,328,318" Padding="0" 
+            Click="Avatar2_Click">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Style.Triggers>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Opacity" Value="0.5"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+            <Image Source="/Image/avatar2Certo.webp" Stretch="Uniform"/>
+        </Button>
+        <!--AVATAR 3-->
+        <Button x:Name="Avatar3" Width="60" Height="60" Margin="26,197,328,177" Padding="0" 
+            Click="Avatar3_Click">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Style.Triggers>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Opacity" Value="0.5"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+            <Image Source="/Image/avatar3Certo.webp" Stretch="Uniform"/>
+        </Button>
+        <!--AVATAR 4-->
+        <Button x:Name="Avatar4" Width="60" Height="60" Margin="26,262,328,112" Padding="0" 
+            Click="Avatar4_Click">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Style.Triggers>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Opacity" Value="0.5"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+            <Image Source="/Image/avatar4Certo.webp" Stretch="Uniform"/>
+        </Button>
+        <!--AVATAR 5-->
+        <Button x:Name="Avatar5" Width="60" Height="60" Margin="26,327,328,47" Padding="0" 
+            Click="Avatar5_Click">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Style.Triggers>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Opacity" Value="0.5"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+            <Image Source="/Image/avatar5Certo.webp" Stretch="Uniform"/>
+        </Button>
+        <!-- LABELS E TEXT BOX-->
         <Label Content="Email" HorizontalAlignment="Left" Height="28" Margin="203,197,0,0" VerticalAlignment="Top" Width="122" FontSize="18" FontWeight="Bold"/>
-        <Label Content="Nome" HorizontalAlignment="Left" Height="30" Margin="342,0,0,0" VerticalAlignment="Center" Width="103" FontSize="18" FontWeight="Bold"/>
-        <Label Content="Senha" HorizontalAlignment="Left" Height="24" Margin="491,201,0,0" VerticalAlignment="Top" Width="102" FontSize="18" FontWeight="Bold"/>
-        <Label Content="Status" HorizontalAlignment="Left" Height="25" Margin="490,294,0,0" VerticalAlignment="Top" Width="103" FontSize="18" FontWeight="Bold"/>
-        <TextBlock x:Name="digitar_email" HorizontalAlignment="Left" Height="46" Margin="203,230,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="122" Background="Black" Foreground="White"/>
-        <TextBlock x:Name="digitar_nome_completo" HorizontalAlignment="Left" Height="46" Margin="342,230,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="123" Background="Black" Foreground="White"/>
-        <TextBlock x:Name="digita_senha" HorizontalAlignment="Left" Height="46" Margin="491,230,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="122" Background="Black" Foreground="White"/>
+
+        <Label Content="Usuario" HorizontalAlignment="Left" Height="30" Margin="342,0,0,0" VerticalAlignment="Center" Width="103" FontSize="18" FontWeight="Bold" Grid.ColumnSpan="2"/>
+
+        <Label Content="Senha" HorizontalAlignment="Left" Height="24" Margin="77,201,0,0" VerticalAlignment="Top" Width="102" FontSize="18" FontWeight="Bold" Grid.Column="1"/>
+
+        <Label Content="Status" HorizontalAlignment="Left" Height="25" Margin="76,294,0,0" VerticalAlignment="Top" Width="103" FontSize="18" FontWeight="Bold" Grid.Column="1"/>
+
+        <TextBox x:Name="digitar_email" HorizontalAlignment="Left" Height="46" Margin="203,230,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="122" Background="Black" Foreground="White"/>
+
+        <TextBox x:Name="digitar_usuario" HorizontalAlignment="Left" Height="46" Margin="342,230,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="123" Background="Black" Foreground="White" Grid.ColumnSpan="2"/>
+
+        <ui:PasswordBox x:Name="digita_senha" HorizontalAlignment="Left" Height="46" Margin="77,230,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="122" Background="Black" Foreground="White" Grid.Column="1"/>
+
         <Label Content="Perfil" HorizontalAlignment="Left" Height="31" Margin="202,288,0,0" VerticalAlignment="Top" Width="123" FontSize="18" FontWeight="Bold"/>
-        <Label Content="Avatar" HorizontalAlignment="Left" Height="31" Margin="342,288,0,0" VerticalAlignment="Top" Width="123" FontSize="18" FontWeight="Bold"/>
-        <TextBlock HorizontalAlignment="Left" Height="46" Margin="342,323,0,0" TextWrapping="Wrap" Text="CARDS" VerticalAlignment="Top" Width="123" Background="Black" Foreground="White"/>
-        <ComboBox x:Name="cbStatus" HorizontalAlignment="Left" Margin="491,323,0,0" VerticalAlignment="Top" Width="120" Height="43">
+
+        <Label Content="Avatar" HorizontalAlignment="Left" Height="31" Margin="342,288,0,0" VerticalAlignment="Top" Width="123" FontSize="18" FontWeight="Bold" Grid.ColumnSpan="2"/>
+
+        <ComboBox x:Name="cbStatus" HorizontalAlignment="Left" Margin="77,323,0,0" VerticalAlignment="Top" Width="120" Height="43" Grid.Column="1">
             <ComboBoxItem Content="Ativo"/>
             <ComboBoxItem Content="Inativo"/>
             <ComboBox.Background>
@@ -29,11 +111,11 @@
                 </LinearGradientBrush>
             </ComboBox.Background>
         </ComboBox>
-        <Label Content="UPDATE" HorizontalAlignment="Center" Height="42" Margin="0,19,0,0" VerticalAlignment="Top" Width="308" FontSize="25" FontWeight="Bold" HorizontalContentAlignment="Center"/>
-        <Button x:Name="Botao_Confirmar_update" Content="Update" Height="32" Margin="0,392,0,0" VerticalAlignment="Top" Width="176" HorizontalAlignment="Center" Click="Button_Click"/>
-        <TextBlock x:Name="email_alvo" HorizontalAlignment="Left" Height="46" Margin="332,101,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="122" Background="Black" Foreground="White"/>
-        <Label Content="Digite o email em que deseja editar" HorizontalAlignment="Left" Height="21" Margin="282,75,0,0" VerticalAlignment="Top" Width="242"/>
-        <Button x:Name="botao_procurar" Content="Procurar" Height="35" Margin="332,152,0,0" VerticalAlignment="Top" Width="122" RenderTransformOrigin="0.438,0.515" Click="botao_procurar_Click1"/>
+        <Label Content="UPDATE" HorizontalAlignment="Left" Height="42" Margin="246,19,0,0" VerticalAlignment="Top" Width="308" FontSize="25" FontWeight="Bold" HorizontalContentAlignment="Center" Grid.ColumnSpan="2"/>
+        <Button x:Name="Botao_Confirmar_update" Content="Update" Height="32" Margin="312,392,0,0" VerticalAlignment="Top" Width="176" Click="Button_Click" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="email_alvo" HorizontalAlignment="Left" Height="46" Margin="332,101,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="122" Background="Black" Foreground="White" Grid.ColumnSpan="2"/>
+        <Label Content="Digite o email em que deseja editar" HorizontalAlignment="Left" Height="21" Margin="282,75,0,0" VerticalAlignment="Top" Width="242" Grid.ColumnSpan="2"/>
+        <Button x:Name="botao_procurar" Content="Procurar" Height="35" Margin="332,152,0,0" VerticalAlignment="Top" Width="122" RenderTransformOrigin="0.438,0.515" Click="botao_procurar_Click1" Grid.ColumnSpan="2"/>
         <ComboBox x:Name="cbPerfil" HorizontalAlignment="Left" Margin="202,323,0,0" VerticalAlignment="Top" Width="120" Height="43">
             <ComboBoxItem Content="Administrador"/>
             <ComboBoxItem Content="Usuario Comum"/>
@@ -43,6 +125,22 @@
                     <GradientStop Color="Black" Offset="1"/>
                 </LinearGradientBrush>
             </ComboBox.Background>
+        </ComboBox>
+        <ComboBox x:Name="cbStatus_Copiar" HorizontalAlignment="Left" Margin="345,321,0,0" VerticalAlignment="Top" Width="120" Height="44" Grid.ColumnSpan="2">
+            <ComboBox.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="Black" Offset="1"/>
+                </LinearGradientBrush>
+            </ComboBox.Background>
+            <ComboBoxItem Content="Avatar1"/>
+            <ComboBoxItem Content="Avatar2"/>
+            <ComboBoxItem Content="Avatar3"/>
+            <ComboBoxItem Content="Avatar4"/>
+            <ComboBoxItem Content="Avatar5"/>
+
+
+
         </ComboBox>
     </Grid>
 </Window>

@@ -2,24 +2,23 @@
 using System;
 using System.Windows;
 using System.Windows.Controls;
-
+using BCryptNet = BCrypt.Net.BCrypt;
 namespace Sistema_Gerenciamento_Usuarios
 {
     public partial class Update : Window
     {
         private string connectionString = "Server=localhost;Database=login;Uid=root;Pwd=;";
 
-        // Armazena o ID do usuário encontrado para garantir UPDATE na linha correta
         private int idUsuarioEncontrado = 0;
+        private string AvatarEscolhido = "";
+
 
         public Update()
         {
             InitializeComponent();
         }
 
-        // ==========================================
-        // 1. ETAPA: PROCURAR O USUÁRIO PELO EMAIL
-        // ==========================================
+
         private void botao_procurar_Click1(object sender, RoutedEventArgs e)
         {
             string emailBusca = email_alvo.Text.Trim();
@@ -36,38 +35,36 @@ namespace Sistema_Gerenciamento_Usuarios
                 {
                     con.Open();
 
-                    string queryProcurar = "SELECT id, nome_completo, email, senha, IsAdmin, status FROM usuarios WHERE email = @email LIMIT 1";
-
+                    string queryProcurar = "SELECT id, usuario, email, senha, IsAdmin, status, imagem_perfil FROM usuarios WHERE email = @email LIMIT 1";
                     using (MySqlCommand cmd = new MySqlCommand(queryProcurar, con))
                     {
                         cmd.Parameters.AddWithValue("@email", emailBusca);
 
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
+
+
                             if (reader.Read())
                             {
-                                // Salva o ID do usuário
                                 idUsuarioEncontrado = Convert.ToInt32(reader["id"]);
 
-                                // Preenche as caixas de texto
                                 digitar_email.Text = reader["email"].ToString();
-                                digitar_nome_completo.Text = reader["nome_completo"] != DBNull.Value ? reader["nome_completo"].ToString() : "";
+                                digitar_usuario.Text = reader["usuario"] != DBNull.Value ? reader["usuario"].ToString() : "";
                                 digita_senha.Text = reader["senha"] != DBNull.Value ? reader["senha"].ToString() : "";
 
-                                // Preenche o ComboBox Perfil (IsAdmin: 1 = Admin, 0 = Usuário)
                                 int isAdmin = Convert.ToInt32(reader["IsAdmin"]);
                                 SetComboBoxValue(cbPerfil, isAdmin == 1 ? "Admin" : "Usuário");
 
-                                // Preenche o ComboBox Status ("Ativo" ou "Inativo")
                                 string status = reader["status"].ToString();
                                 SetComboBoxValue(cbStatus, status);
+
+                                AvatarEscolhido = reader["imagem_perfil"] != DBNull.Value ? reader["imagem_perfil"].ToString() : "";
 
                                 MessageBox.Show("Usuário encontrado! Faça as alterações desejadas.");
                             }
                             else
                             {
                                 MessageBox.Show("Nenhum usuário foi encontrado com este e-mail.");
-                                LimparCampos();
                             }
                         }
                     }
@@ -79,9 +76,7 @@ namespace Sistema_Gerenciamento_Usuarios
             }
         }
 
-        // ==========================================
-        // 2. ETAPA: SALVAR A ALTERAÇÃO (UPDATE)
-        // ==========================================
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             if (idUsuarioEncontrado == 0)
@@ -91,14 +86,12 @@ namespace Sistema_Gerenciamento_Usuarios
             }
 
             string novoEmail = digitar_email.Text.Trim();
-            string novoNome = digitar_nome_completo.Text.Trim();
-            string novaSenha = digita_senha.Text.Trim();
+            string novoUsuario = digitar_usuario.Text.Trim();
+            string novaSenha = digita_senha.Password.Trim();
 
-            // Pega o valor selecionado no ComboBox de Perfil (IsAdmin)
             string perfilSelecionado = GetComboBoxContent(cbPerfil);
             int isAdmin = (perfilSelecionado == "Admin" || perfilSelecionado == "1") ? 1 : 0;
 
-            // Pega o valor selecionado no ComboBox de Status
             string statusSelecionado = GetComboBoxContent(cbStatus);
 
             using (MySqlConnection con = new MySqlConnection(connectionString))
@@ -108,8 +101,9 @@ namespace Sistema_Gerenciamento_Usuarios
                     con.Open();
 
                     string queryUpdate = @"UPDATE usuarios 
-                                          SET email = @email, 
-                                              nome_completo = @nome, 
+                                          SET imagem_perfil = @imagem_perfil,
+                                              email = @email, 
+                                              usuario = @usuario, 
                                               senha = @senha, 
                                               IsAdmin = @isAdmin, 
                                               status = @status, 
@@ -118,9 +112,12 @@ namespace Sistema_Gerenciamento_Usuarios
 
                     using (MySqlCommand cmd = new MySqlCommand(queryUpdate, con))
                     {
+                        string senhaCriptografada = BCryptNet.HashPassword(novaSenha);
+
+                        cmd.Parameters.AddWithValue("@imagem_perfil", AvatarEscolhido);
                         cmd.Parameters.AddWithValue("@email", novoEmail);
-                        cmd.Parameters.AddWithValue("@nome", novoNome);
-                        cmd.Parameters.AddWithValue("@senha", novaSenha);
+                        cmd.Parameters.AddWithValue("@usuario", novoUsuario);
+                        cmd.Parameters.AddWithValue("@senha", senhaCriptografada);
                         cmd.Parameters.AddWithValue("@isAdmin", isAdmin);
                         cmd.Parameters.AddWithValue("@status", statusSelecionado);
                         cmd.Parameters.AddWithValue("@id", idUsuarioEncontrado);
@@ -144,7 +141,6 @@ namespace Sistema_Gerenciamento_Usuarios
             }
         }
 
-        // Métodos auxiliares para ler e definir ComboBox no WPF de forma segura:
         private string GetComboBoxContent(ComboBox cb)
         {
             if (cb.SelectedItem is ComboBoxItem item)
@@ -168,15 +164,31 @@ namespace Sistema_Gerenciamento_Usuarios
                 }
             }
         }
-
-        private void LimparCampos()
+        private void Avatar1_Click(object sender, RoutedEventArgs e)
         {
-            idUsuarioEncontrado = 0;
-            digitar_email.Clear();
-            digitar_nome_completo.Clear();
-            digita_senha.Clear();
-            cbPerfil.SelectedIndex = -1;
-            cbStatus.SelectedIndex = -1;
+            AvatarEscolhido = "Image/avatar1.jpg";
         }
+        private void Avatar2_Click(object sender, RoutedEventArgs e)
+        {
+            AvatarEscolhido = "Image/avatar2.jpg";
+        }
+        private void Avatar3_Click(object sender, RoutedEventArgs e)
+        {
+            AvatarEscolhido = "Image/avatar3.jpg";
+
+        }
+        private void Avatar4_Click(object sender, RoutedEventArgs e)
+        {
+            AvatarEscolhido = "Image/avatar4.jpg";
+
+        }
+        private void Avatar5_Click(object sender, RoutedEventArgs e)
+        {
+            AvatarEscolhido = "Image/avatar5.jpg";
+
+        }
+
+
     }
+
 }
