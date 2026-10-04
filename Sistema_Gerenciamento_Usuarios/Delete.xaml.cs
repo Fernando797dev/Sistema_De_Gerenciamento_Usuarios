@@ -8,15 +8,10 @@ namespace Sistema_Gerenciamento_Usuarios
     public partial class Delete : Window
     {
         private string connectionString = "Server=localhost;Database=login;Uid=root;Pwd=;";
-        private int idUsuarioLogado;
-        private bool isAdmin;
 
-        public Delete(int idUsuarioLogado, bool isAdmin)
+        public Delete()
         {
             InitializeComponent();
-
-            this.idUsuarioLogado = idUsuarioLogado;
-            this.isAdmin = isAdmin;
         }
 
         private void ConfirmarDelete_Click(object sender, RoutedEventArgs e)
@@ -29,39 +24,24 @@ namespace Sistema_Gerenciamento_Usuarios
                 return;
             }
 
-            if (!isAdmin)
-            {
-                MessageBox.Show("Somente administradores podem excluir usuários.");
-                return;
-            }
-
             using (MySqlConnection conexao = new MySqlConnection(connectionString))
             {
                 try
                 {
                     conexao.Open();
 
-                    string queryBusca = "SELECT id, IsAdmin FROM usuarios WHERE email = @email LIMIT 1";
+                    string queryBusca = "SELECT id FROM usuarios WHERE email = @email LIMIT 1";
 
                     using (MySqlCommand comando = new MySqlCommand(queryBusca, conexao))
                     {
                         comando.Parameters.AddWithValue("@email", email);
 
-                        using (MySqlDataReader reader = comando.ExecuteReader())
+                        object resultado = comando.ExecuteScalar();
+
+                        if (resultado == null)
                         {
-                            if (!reader.Read())
-                            {
-                                MessageBox.Show("Nenhum usuário foi encontrado com este email.");
-                                return;
-                            }
-
-                            int idUsuario = Convert.ToInt32(reader["id"]);
-
-                            if (idUsuario == idUsuarioLogado)
-                            {
-                                MessageBox.Show("Você não pode excluir o próprio usuário.");
-                                return;
-                            }
+                            MessageBox.Show("Nenhum usuário foi encontrado com este email.");
+                            return;
                         }
                     }
 
