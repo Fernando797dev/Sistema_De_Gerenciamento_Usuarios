@@ -58,7 +58,7 @@
         <Button x:Name="Botao_Criar_usuario" Content="Criar um novo usuário" Height="39" Margin="607,56,0,0" VerticalAlignment="Top" Width="152" FontSize="13" Click="Button_Click">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="Black"/>
+                    <GradientStop Color="White"/>
                     <GradientStop Color="Black" Offset="1"/>
                 </LinearGradientBrush>
             </Button.Background>
@@ -66,7 +66,7 @@
         <Button x:Name="Botao_Listar_usuario" Content="Listar usuários" Height="39" Margin="607,112,0,0" VerticalAlignment="Top" Width="152" FontSize="13" Click="Botao_Listar_usuario_Click">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="Black"/>
+                    <GradientStop Color="White"/>
                     <GradientStop Color="Black" Offset="1"/>
                 </LinearGradientBrush>
             </Button.Background>
@@ -74,7 +74,7 @@
         <Button x:Name="Botao_Editar_usuario" Content="Editar usuários" Height="39" Margin="607,163,0,0" Width="152" FontSize="13" VerticalAlignment="Top" Click="Botao_Editar_usuario_Click">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="Black"/>
+                    <GradientStop Color="White"/>
                     <GradientStop Color="Black" Offset="1"/>
                 </LinearGradientBrush>
             </Button.Background>
@@ -82,23 +82,7 @@
         <Button x:Name="Botao_Apagar_usuarios" Content="Apagar usuários" Height="39" Margin="607,222,0,0" VerticalAlignment="Top" Width="152" FontSize="13" Click="Botao_Apagar_usuarios_Click">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="Black"/>
-                    <GradientStop Color="Black" Offset="1"/>
-                </LinearGradientBrush>
-            </Button.Background>
-        </Button>
-        <Button x:Name="Botao_ver_LOG" Content="Ver logs" Margin="607,283,0,0" VerticalAlignment="Top" Width="152" Click="Botao_ver_LOG_Click">
-            <Button.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="Black"/>
-                    <GradientStop Color="Black" Offset="1"/>
-                </LinearGradientBrush>
-            </Button.Background>
-        </Button>
-        <Button x:Name="Botao_Bloquear" Content="Bloquear" Margin="607,335,0,0" VerticalAlignment="Top" Width="152">
-            <Button.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="Black"/>
+                    <GradientStop Color="White"/>
                     <GradientStop Color="Black" Offset="1"/>
                 </LinearGradientBrush>
             </Button.Background>

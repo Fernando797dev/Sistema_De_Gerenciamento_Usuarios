@@ -51,10 +51,5 @@ namespace Sistema_Gerenciamento_Usuarios
             AbrirDelete.Show();
             this.Close();
         }
-
-        private void Botao_ver_LOG_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

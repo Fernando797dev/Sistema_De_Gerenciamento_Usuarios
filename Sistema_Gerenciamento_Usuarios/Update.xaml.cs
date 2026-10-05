@@ -50,7 +50,7 @@ namespace Sistema_Gerenciamento_Usuarios
 
                                 digitar_email.Text = reader["email"].ToString();
                                 digitar_usuario.Text = reader["usuario"] != DBNull.Value ? reader["usuario"].ToString() : "";
-                                digita_senha.Text = reader["senha"] != DBNull.Value ? reader["senha"].ToString() : "";
+                                digita_senha.Password = reader["senha"] != DBNull.Value ? reader["senha"].ToString() : "";
 
                                 int isAdmin = Convert.ToInt32(reader["IsAdmin"]);
                                 SetComboBoxValue(cbPerfil, isAdmin == 1 ? "Admin" : "Usuário");
