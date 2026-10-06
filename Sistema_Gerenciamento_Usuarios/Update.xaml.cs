@@ -1,8 +1,20 @@
-﻿using MySql.Data.MySqlClient;
+﻿﻿using MySql.Data.MySqlClient;
+using Sistema_Gerenciamento_Usuarios;
 using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.IO.Packaging;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 using BCryptNet = BCrypt.Net.BCrypt;
+
 namespace Sistema_Gerenciamento_Usuarios
 {
     public partial class Update : Window
@@ -12,7 +24,6 @@ namespace Sistema_Gerenciamento_Usuarios
         private int idUsuarioEncontrado = 0;
         private string AvatarEscolhido = "";
 
-
         public Update()
         {
             InitializeComponent();
@@ -21,7 +32,8 @@ namespace Sistema_Gerenciamento_Usuarios
 
         private void botao_procurar_Click1(object sender, RoutedEventArgs e)
         {
-            string emailBusca = email_alvo.Text.Trim();
+
+            string emailBusca = email_alvo.Text;
 
             if (string.IsNullOrEmpty(emailBusca))
             {
@@ -50,7 +62,7 @@ namespace Sistema_Gerenciamento_Usuarios
 
                                 digitar_email.Text = reader["email"].ToString();
                                 digitar_usuario.Text = reader["usuario"] != DBNull.Value ? reader["usuario"].ToString() : "";
-                                digita_senha.Text = reader["senha"] != DBNull.Value ? reader["senha"].ToString() : "";
+                                digita_senha.Password = reader["senha"] != DBNull.Value ? reader["senha"].ToString() : "";
 
                                 int isAdmin = Convert.ToInt32(reader["IsAdmin"]);
                                 SetComboBoxValue(cbPerfil, isAdmin == 1 ? "Admin" : "Usuário");
@@ -190,5 +202,4 @@ namespace Sistema_Gerenciamento_Usuarios
 
 
     }
-
 }

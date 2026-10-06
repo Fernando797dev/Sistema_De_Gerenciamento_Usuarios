@@ -16,9 +16,7 @@ using BCryptNet = BCrypt.Net.BCrypt;
 
 namespace WpfApp1
 {
-    /// <summary>
-    /// Lógica interna para LoginWindow1.xaml
-    /// </summary>
+
     public partial class LoginWindow1 : Window
     {
         public string connectionString = "Server=localhost;Database=login;Uid=root;Pwd=;";
