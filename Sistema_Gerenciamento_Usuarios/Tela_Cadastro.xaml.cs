@@ -303,25 +303,25 @@ namespace Sistema_Gerenciamento_Usuarios
 
         private void Avatar1_Click(object sender, RoutedEventArgs e)
         {
-            AvatarEscolhido = "Image/avatar1.jpg";
+            AvatarEscolhido = "Image/avatar1.webp";
         }
         private void Avatar2_Click(object sender, RoutedEventArgs e)
         {
-            AvatarEscolhido = "Image/avatar2.jpg";
+            AvatarEscolhido = "Image/avatar2.webp";
         }
         private void Avatar3_Click(object sender, RoutedEventArgs e)
         {
-            AvatarEscolhido = "Image/avatar3.jpg";
+            AvatarEscolhido = "Image/avatar3.webp";
 
         }
         private void Avatar4_Click(object sender, RoutedEventArgs e)
         {
-            AvatarEscolhido = "Image/avatar4.jpg";
+            AvatarEscolhido = "Image/avatar4.webp";
 
         }
         private void Avatar5_Click(object sender, RoutedEventArgs e)
         {
-            AvatarEscolhido = "Image/avatar5.jpg";
+            AvatarEscolhido = "Image/avatar5.webp";
 
         }
     }

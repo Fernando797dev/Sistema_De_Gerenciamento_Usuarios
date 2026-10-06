@@ -14,15 +14,14 @@ using System.Windows.Shapes;
 
 namespace Sistema_Gerenciamento_Usuarios
 {
-    /// <summary>
-    /// Lógica interna para Tela_Inicial_admin.xaml
-    /// </summary>
+
     public partial class Tela_Inicial_admin : Window
     {
         public Tela_Inicial_admin()
         {
             InitializeComponent();
         }
+
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
