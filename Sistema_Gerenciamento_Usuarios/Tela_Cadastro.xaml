@@ -223,7 +223,7 @@
         <!-- Botão Cadastro -->
         <Button x:Name="btn_login_cadastro"
                 Content="CADASTRAR USUÁRIO"
-                Margin="199,465,0,0"
+                Margin="269,465,269,0"
                 VerticalAlignment="Top"
                 Width="196"
                 Height="30"
